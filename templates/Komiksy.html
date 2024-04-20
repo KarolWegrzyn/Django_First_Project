@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="{% static 'nowy.css' %}">
 </head>
 <body>
+
+    {% if user.is_authenticated %}
+        Witaj {{ user.username }} !<br>
+        <a href="{% url 'logout_url' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login_url' %}">Login</a>
+    {% endif %}
+
+    <hr>
+
     <h2> <a href="{% url 'nowy_komiks' %}">Dodaj Komiks</a> </h2>
 
     {% if komiksy|length == 0 %}

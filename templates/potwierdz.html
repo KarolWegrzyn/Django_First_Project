@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Czy na pewno chcesz usunąć "{{ komiks.tytul }}" Komiks ?</h1>
+    <form method="POST"> <!-- stworzenie formularza do przesłania danych ustawienie metody na post -->
+        {% csrf_token %} <!-- jest wykorzystywany do obejscia zabezpieczenia przed atakiem csrf, pozwala wysłać dane -->
+        <button type="submit">Usuń Komiks</button>
+    </form>
+    <a href="{% url 'wszystkie_komiksy' %}">Cofnij</a>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'nowy.css' %}">
+</head>
+<body>
+    <h2> <a href="{% url 'nowy_komiks' %}">Dodaj Komiks</a> </h2>
+
+    {% if komiksy|length == 0 %}
+        <h2>Brak Komiksów</h2>
+    {% else %}
+        <h2>Ilosc komiksów w bazie: {{ komiksy|length }}</h2>
+        {% for komiks in komiksy%}
+            <h3>{{ komiks }}</h3>
+            <p>{{ komiks.opis }}</p>
+            <a href="{% url 'edytuj_komiks' komiks.id %}">Edytuj</a>
+            <a href="{% url 'usun_komiks' komiks.id %}">Usuń</a>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>

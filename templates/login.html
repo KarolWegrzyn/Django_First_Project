@@ -8,17 +8,18 @@
     {% endif %}
 
     <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Login</h5>
-          <!--<i class="fa-regular fa-user"></i>-->
+      <div id="logCard" class="card-body">
+        <h5 id="UserCard" class="card-title">Login</h5>
+          <i id="user_icon" class="fa-regular fa-user"></i>
           <form method="post" >
             {% csrf_token %}
             {{ form }} <!-- form|bootstrap -->
-            <label for="username">Username:</label><br>
+            <label class="logtext" for="username">Username</label><br>
             <input type="text" id="username" name="username"><br>
-            <label for="password">Password:</label><br>
+            <label class="logtext" for="password">Password</label><br>
             <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Login">
+            <button id="buttonlog" class="btn btn-outline-primary" type="submit">Login <i class="fa-solid fa-right-to-bracket"></i></button>
+
           </form>
       </div>
     </div>

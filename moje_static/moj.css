@@ -5,3 +5,24 @@ h2 {
 body{
     padding: 2rem;
 }
+
+#user_icon, #UserCard{
+    display: inline-block;
+}
+
+#user_icon{
+    margin-left:10px;
+}
+
+#password, #username{
+    margin-left: 30px;
+}
+
+.logtext{
+    margin-left: 30px;
+}
+
+#buttonlog{
+    margin-left:80px;
+}
+

@@ -6,19 +6,7 @@ body{
     padding: 2rem;
 }
 
-#user_icon, #UserCard{
-    display: inline-block;
-}
-
-#user_icon{
-    margin-left:10px;
-}
-
-#password, #username{
-    margin-left: 30px;
-}
-
-.logtext{
+#password, #username, .logtext{
     margin-left: 30px;
 }
 

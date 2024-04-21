@@ -9,7 +9,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-
 def wszystkie_komiksy(request): #dodanie metody zwracajacej widok (zwraca wszystkie rekordy z bazy)
     wszystkie = Komiks.objects.all() #pobranie wszystkich obiektow z bazy (ORM)
     return render(request, 'Komiksy.html', {'komiksy': wszystkie}) #zwrocenie strony html z template

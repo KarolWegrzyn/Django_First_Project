@@ -18,10 +18,14 @@
     {% else %}
         <h2>Ilosc komiksów w bazie: {{ komiksy|length }}</h2>
         {% for komiks in komiksy%}
-            <h3>{{ komiks }}</h3>
-            <p>{{ komiks.opis }}</p>
-            <a href="{% url 'edytuj_komiks' komiks.id %}">Edytuj</a>
-            <a href="{% url 'usun_komiks' komiks.id %}">Usuń</a>
+        <div class="card" style="width: 22rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ komiks }}</h5>
+            <p class="card-text">{{ komiks.opis }}</p>
+            <a href="{% url 'edytuj_komiks' komiks.id %}"><i class="fa-solid fa-2x fa-gear"></i></a>
+            <a href="{% url 'usun_komiks' komiks.id %}"><i class="fa-solid fa-2x fa-trash-can"></i></a>
+          </div>
+        </div>
         {% endfor %}
     {% endif %}
 {% endblock %}

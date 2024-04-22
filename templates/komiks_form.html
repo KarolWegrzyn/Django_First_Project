@@ -6,9 +6,9 @@
         <div class="card mx-auto" style="width: 48rem;">
           <div class="card-body">
             {% if  nowy %}
-                <h5 id="UserCard" class="card-title">Nowy Komiks</h5>
+                <h5 class="card-title">Nowy Komiks</h5>
             {% else %}
-                <h5 id="UserCard" class="card-title">Edytuj Komiks</h5>
+                <h5 class="card-title">Edytuj Komiks</h5>
             {% endif %}
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}

@@ -2,10 +2,16 @@
 {% block tytul %} Potwierdź {% endblock %}
 
 {% block strona %}
-    <h1>Czy na pewno chcesz usunąć "{{ komiks.tytul }}" Komiks ?</h1>
-    <form method="POST"> <!-- stworzenie formularza do przesłania danych ustawienie metody na post -->
-        {% csrf_token %} <!-- jest wykorzystywany do obejscia zabezpieczenia przed atakiem csrf, pozwala wysłać dane -->
-        <button type="submit">Usuń Komiks</button>
-    </form>
-    <a href="{% url 'wszystkie_komiksy' %}">Cofnij</a>
+    <div class="card mx-auto" style="width: 48rem;">
+      <div class="card-body">
+          <h5 class="card-title">Czy na pewno chcesz usunąć "{{ komiks.tytul }}" Komiks ?</h5>
+            <form method="POST"> <!-- stworzenie formularza do przesłania danych ustawienie metody na post -->
+                {% csrf_token %} <!-- jest wykorzystywany do obejscia zabezpieczenia przed atakiem csrf, pozwala wysłać dane -->
+                <button type="submit" class="btn btn-outline-danger">Usuń Komiks</button>
+            </form>
+      </div>
+            <a href="{% url 'wszystkie_komiksy' %}">Cofnij</a>
+    </div>
+
+
 {% endblock %}

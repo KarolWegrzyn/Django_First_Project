@@ -20,7 +20,7 @@ def nowy_komiks(request):
         form.save()
         return redirect(wszystkie_komiksy)
 
-    return render(request,'komiks_form.html',{'form':form})
+    return render(request,'komiks_form.html',{'form':form, 'nowy': True})
 @login_required
 def edytuj_komiks(request, id):     #parametr id pochodzi z urls
     #komiks = Komiks.objects.get(id)    pierwszy sposób
@@ -31,7 +31,7 @@ def edytuj_komiks(request, id):     #parametr id pochodzi z urls
         form.save()
         return redirect(wszystkie_komiksy)
 
-    return render(request,'komiks_form.html',{'form':form})
+    return render(request,'komiks_form.html',{'form':form, 'nowy': False})
 
 @login_required
 def usun_komiks(request,id):

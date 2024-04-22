@@ -3,10 +3,23 @@
 {% block tytul %} Komiks form {% endblock %}
 
 {% block strona %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form|bootstrap}}
-        <button type="submit">Dodaj Komiks</button>
-    </form>
-    <a href="{% url 'wszystkie_komiksy' %}">Cofnij</a>
+        <div class="card mx-auto" style="width: 48rem;">
+          <div class="card-body">
+            {% if  nowy %}
+                <h5 id="UserCard" class="card-title">Nowy Komiks</h5>
+            {% else %}
+                <h5 id="UserCard" class="card-title">Edytuj Komiks</h5>
+            {% endif %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form|bootstrap}}
+                        {% if  nowy %}
+                            <button type="submit" class="btn btn-outline-success">Dodaj Komiks</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-outline-success">Edytuj Komiks</button>
+                        {% endif %}
+                </form>
+          </div>
+            <a href="{% url 'wszystkie_komiksy' %}">Cofnij</a>
+        </div>
 {% endblock %}

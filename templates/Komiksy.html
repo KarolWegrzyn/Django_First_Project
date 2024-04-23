@@ -14,14 +14,14 @@
 
     <hr>
 
-    <h2> <a href="{% url 'nowy_komiks' %}" class="btn btn-outline-success">Dodaj Komiks <i class="fa-solid fa-plus"></i></a> </h2>
+    <h2> <a href="{% url 'nowy_komiks' %}" class="btn btn-outline-primary">Dodaj Komiks <i class="fa-solid fa-plus"></i></a> </h2>
 
     {% if komiksy|length == 0 %}
         <h2>Brak Komiksów</h2>
     {% else %}
 <!--        <h2>Ilosc komiksów w bazie: {{ komiksy|length }}</h2>-->
         {% for komiks in komiksy%}
-        <div class="card" style="width: 60rem;">
+        <div class="card" style="width: 70rem;">
             <div class="card-body">
                 <div class="row">
                     <div class="col-2">

@@ -26,4 +26,7 @@ class Komiks(models.Model):
     def tytul_rok(self):
         return "{} ({})".format(self.tytul, self.rok)
 
-
+class Ocena(models.Model):
+    recenzja = models.TextField(default="", blank=True)
+    gwiazdki = models.PositiveSmallIntegerField(default=5)
+    komiks = models.ForeignKey(Komiks, on_delete=models.CASCADE)

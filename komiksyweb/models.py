@@ -30,3 +30,8 @@ class Ocena(models.Model):
     recenzja = models.TextField(default="", blank=True)
     gwiazdki = models.PositiveSmallIntegerField(default=5)
     komiks = models.ForeignKey(Komiks, on_delete=models.CASCADE)
+
+class Aktor(models.Model):
+    imie = models.CharField(max_length=32)
+    nazwisko = models.CharField(max_length=32)
+    komiksy = models.ManyToManyField(Komiks)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Komiks, DodatkoweInfo, Ocena
+from .models import Komiks, DodatkoweInfo, Ocena, Aktor
 
 #admin.site.register(Komiks) --pokazanie wszystkiego
 
@@ -13,3 +13,4 @@ class KomiksAdmin(admin.ModelAdmin):
 
 admin.site.register(DodatkoweInfo)
 admin.site.register(Ocena)
+admin.site.register(Aktor)

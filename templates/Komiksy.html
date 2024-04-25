@@ -15,7 +15,7 @@
     <hr>
 
     <h2> <a href="{% url 'nowy_komiks' %}" class="btn btn-outline-primary">Dodaj Komiks <i class="fa-solid fa-plus"></i></a> </h2>
-
+    <br>
     {% if komiksy|length == 0 %}
         <h2>Brak Komiksów</h2>
     {% else %}
@@ -45,6 +45,7 @@
                 </div>
           </div>
         </div>
+        <br>
         {% endfor %}
     {% endif %}
 {% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Komiks, DodatkoweInfo
+from .models import Komiks, DodatkoweInfo, Ocena
 from .forms import KomiksForm, DodatkoweInfoForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
@@ -25,6 +25,7 @@ def nowy_komiks(request):
 def edytuj_komiks(request, id):     #parametr id pochodzi z urls
     #komiks = Komiks.objects.get(id)    pierwszy sposób
     komiks = get_object_or_404(Komiks, pk=id) #READ - pobranie rekordu z bazy w celu edycji
+    oceny = Ocena.objects.filter(komiks=komiks)
 
     try:
         dodatkowe = DodatkoweInfo.objects.get(komiks=komiks.id)
@@ -41,7 +42,7 @@ def edytuj_komiks(request, id):     #parametr id pochodzi z urls
         komiks.save()
         return redirect(wszystkie_komiksy)
 
-    return render(request,'komiks_form.html',{'form':form_komiks,'form_dodatkowe': form_dodatkowe, 'nowy': False})
+    return render(request,'komiks_form.html',{'form':form_komiks,'form_dodatkowe': form_dodatkowe,'oceny': oceny, 'nowy': False})
 
 @login_required
 def usun_komiks(request,id):

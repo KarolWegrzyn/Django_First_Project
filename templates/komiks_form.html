@@ -6,9 +6,9 @@
         <div class="card mx-auto" style="width: 48rem;">
           <div class="card-body">
             {% if  nowy %}
-                <h5 class="card-title">Nowy Komiks</h5>
+                <h3 class="card-title">Nowy Komiks</h3>
             {% else %}
-                <h5 class="card-title">Edytuj Komiks</h5>
+                <h3 class="card-title">Edytuj Komiks</h3>
             {% endif %}
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -24,4 +24,16 @@
           </div>
             <a href="{% url 'wszystkie_komiksy' %}">Cofnij</a>
         </div>
+        {% if oceny|length != 0%}
+            <div class="card mx-auto" style="width: 48rem; margin-top: 20px;">
+              <div class="card-body">
+                    <h3 class="card-title">Recenzje</h3>
+                        {% for ocena in oceny%}
+                            <h5>Gwiazdki: {{ocena.gwiazdki}}</h5>
+                            <p>Recenzja: {{ocena.recenzja}}</p>
+                        {% endfor %}
+              </div>
+            </div>
+        {% endif %}
+
 {% endblock %}

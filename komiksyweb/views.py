@@ -1,10 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-from .models import Komiks
-from .forms import KomiksForm
-from django.contrib.auth import logout
-from django.conf import settings
-from django.shortcuts import redirect
+from .models import Komiks, DodatkoweInfo
+from .forms import KomiksForm, DodatkoweInfoForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -14,24 +10,38 @@ def wszystkie_komiksy(request): #dodanie metody zwracajacej widok (zwraca wszyst
     return render(request, 'Komiksy.html', {'komiksy': wszystkie}) #zwrocenie strony html z template
 @login_required
 def nowy_komiks(request):
-    form = KomiksForm(request.POST or None, request.FILES or None)
+    form_komiks = KomiksForm(request.POST or None, request.FILES or None)
+    form_dodatkowe = DodatkoweInfoForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
+    if all((form_komiks.is_valid(), form_dodatkowe.is_valid())):
+        komiks = form_komiks.save(commit=False)
+        dodatkowe = form_dodatkowe.save()
+        komiks.dodatkowe = dodatkowe
+        komiks.save()
         return redirect(wszystkie_komiksy)
 
-    return render(request,'komiks_form.html',{'form':form, 'nowy': True})
+    return render(request,'komiks_form.html',{'form':form_komiks,'form_dodatkowe': form_dodatkowe,'nowy': True})
 @login_required
 def edytuj_komiks(request, id):     #parametr id pochodzi z urls
     #komiks = Komiks.objects.get(id)    pierwszy sposób
     komiks = get_object_or_404(Komiks, pk=id) #READ - pobranie rekordu z bazy w celu edycji
-    form = KomiksForm(request.POST or None, request.FILES or None, instance=komiks)
 
-    if form.is_valid(): #sprawdza poprawność danych
-        form.save()
+    try:
+        dodatkowe = DodatkoweInfo.objects.get(komiks=komiks.id)
+    except DodatkoweInfo.DoesNotExist:
+        dodatkowe = None
+
+    form_komiks = KomiksForm(request.POST or None, request.FILES or None, instance=komiks)
+    form_dodatkowe = DodatkoweInfoForm(request.POST or None, instance=dodatkowe)
+
+    if all((form_komiks.is_valid(), form_dodatkowe.is_valid())):
+        komiks = form_komiks.save(commit=False)
+        dodatkowe = form_dodatkowe.save()
+        komiks.dodatkowe = dodatkowe
+        komiks.save()
         return redirect(wszystkie_komiksy)
 
-    return render(request,'komiks_form.html',{'form':form, 'nowy': False})
+    return render(request,'komiks_form.html',{'form':form_komiks,'form_dodatkowe': form_dodatkowe, 'nowy': False})
 
 @login_required
 def usun_komiks(request,id):

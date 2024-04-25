@@ -35,6 +35,18 @@
             </form>
           </div>
         </div>
+
+        {% if aktorzy|length != 0%}
+        <div class="card mx-auto" style="width: 48rem; margin-top: 20px;">
+            <div class="card-body">
+                <h3 class="card-title">Obsada</h3>
+                {% for aktor in aktorzy%}
+                    <p>{{aktor.imie}} {{aktor.nazwisko}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
         {% if oceny|length != 0%}
             <div class="card mx-auto" style="width: 48rem; margin-top: 20px;">
               <div class="card-body">

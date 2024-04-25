@@ -35,4 +35,4 @@ class Ocena(models.Model):
 class Aktor(models.Model):
     imie = models.CharField(max_length=32)
     nazwisko = models.CharField(max_length=32)
-    komiksy = models.ManyToManyField(Komiks)
+    komiksy = models.ManyToManyField(Komiks, related_name="aktorzy")
